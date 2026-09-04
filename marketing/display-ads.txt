@@ -1,0 +1,105 @@
+PLAINTEXT SUPPLY CO.
+GOOGLE ADS - RESPONSIVE DISPLAY CAMPAIGN ASSETS
+
+NOTE
+All copy below is a starting draft. Before running any of it, review every line
+against current Google Ads editorial and destination-requirement policy, and
+against claims the advertiser can actually substantiate with evidence on the
+landing page. Shipping thresholds, return windows, lead times, gift card terms
+and referral terms are stated on the website and must be verified as accurate
+and current before these assets go live. Character counts in brackets include
+spaces and punctuation and were counted for the text preceding the bracket.
+
+
+BUSINESS NAME (25 characters maximum - 1 asset)
+
+Plaintext Supply Co. [20]
+
+
+SHORT HEADLINES (30 characters maximum - 15 assets)
+
+Plain Clothes, Plainly Said [27]
+Measured In Inches [18]
+One Wardrobe, All Year [22]
+Fabric, Fit, Care, Listed [25]
+Shipped From Toronto [20]
+Thirty Day Returns [18]
+We Pay Return Postage [21]
+Sizes XS To XXL [15]
+Named Mills, Named Yarns [24]
+Built To Be Repaired [20]
+A Small, Honest Range [21]
+Undyed Wool Knitwear [20]
+Gift Cards, No Expiry [21]
+Model Height Listed [19]
+Read The Spec First [19]
+
+
+LONG HEADLINE (90 characters maximum - 5 assets)
+
+Twenty-six pieces, each with fabric, fit, care and sizing written out in full [77]
+A seasonless capsule wardrobe made in Toronto and sold directly to you [70]
+Thirty day returns and exchanges, with a prepaid label that we pay for [70]
+Every garment measured flat in inches, with the size guide to check against [75]
+Wool, cotton and leather from named mills, with certifications listed openly [76]
+
+
+DESCRIPTIONS (90 characters maximum - 10 assets)
+
+Outerwear, knitwear and accessories, with the specification on every page. [74]
+Clothes for a whole year, not for a season. Available in July and January. [74]
+Fit notes, fabric composition and care instructions on every product page. [74]
+Free shipping over a stated threshold, and a flat rate below it. [64]
+Thirty days to return or exchange, with the postage covered by us. [66]
+Sizes XS to XXL on one unisex block, measured flat and listed in inches. [72]
+Gift cards without an expiry date, and store credit for referrals. [66]
+Repairs on anything we made, charged at materials and postage only. [67]
+Undyed wool knitted in Ontario, cut and sewn in a Toronto studio. [65]
+Made to order pieces with a four to six week lead time, stated up front. [72]
+
+
+CALL TO ACTION SUGGESTIONS (5 assets)
+
+Shop now [8]
+Learn more [10]
+See more [8]
+Order now [9]
+Subscribe [9]
+
+
+ANGLE COVERAGE
+
+Fit and sizing              - short headlines 2, 8, 14; long headline 4; descriptions 3, 6
+Fabric and materials        - short headlines 4, 9, 12; long headline 5; descriptions 3, 9
+Wardrobe versatility        - short headlines 3, 11; long headline 1; description 1
+Seasonless dressing         - short headline 3; long headline 2; description 2
+Gifting                     - short headline 13; description 7
+Easy returns                - short headlines 6, 7; long headline 3; description 5
+Longevity and repair        - short headline 10; description 8
+Style guidance and honesty  - short headlines 1, 15; long headline 1; description 10
+
+
+IMAGE AND LOGO NOTES FOR THE ASSET GROUP
+
+Use the same unretouched product photography that appears on the website, so
+that an ad and its landing page look like the same business. Landscape 1.91:1,
+square 1:1 and portrait 4:5 crops of the same frame are preferable to three
+different photographs. Logo should be the plain wordmark on white, square and
+landscape versions. Do not add text overlays to images; the headline fields
+carry the words.
+
+
+POLICY CHECKS APPLIED
+
+No all-capital words other than the standard garment size codes XS and XXL,
+which are size designations rather than emphasis. Confirm this reading against
+current policy before running.
+No exclamation marks, no repeated punctuation, no symbols, no emoji.
+No reference to the advertisement itself and no instruction to click.
+No superlatives, no unverifiable claims, no rankings.
+No urgency, no scarcity, no countdowns, no invented statistics.
+No prices, discounts, sales or promotional offers of any kind.
+No competitor names, no designer or luxury house names, no trademarks.
+No body shape, weight, slimming or figure-flattering language.
+No telephone numbers.
+Every line is written to stand alone, because Google mixes assets automatically.

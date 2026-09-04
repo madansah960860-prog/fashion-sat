@@ -1,0 +1,1307 @@
+/* ==========================================================================
+   PLAINTEXT SUPPLY CO. — design system
+   --------------------------------------------------------------------------
+   Replaces the previous anti-design stylesheet. This is a real design system:
+   a token layer, a modular type scale, a warm editorial palette, a spacing
+   rhythm, elevation, motion, dark mode and print.
+
+   Direction: quiet, material-led editorial retail. Warm paper neutrals, a
+   single rust accent earned from the product photography, a serif display
+   face against a humanist sans, and generous vertical rhythm. Nothing
+   decorative that does not carry information.
+
+   Fonts are high-quality system stacks rather than webfonts: no network
+   request, no layout shift, no third-party dependency, and it renders
+   identically offline over file://.
+
+   Contents
+     1  Tokens
+     2  Reset
+     3  Typography
+     4  Layout containers
+     5  Header, navigation, mobile drawer
+     6  Hero and page intro
+     7  Buttons
+     8  Products
+     9  Gallery
+    10  Filters
+    11  Tables
+    12  Forms
+    13  Accordion
+    14  Advertisement slots
+    15  Cookie banner
+    16  Back to top
+    17  Footer
+    18  Utilities
+    19  Motion and reveal
+    20  Dark mode
+    21  Reduced motion, forced colours, print
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. TOKENS
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Palette — warm paper neutrals with a single rust accent.
+     Every text pairing below is checked against WCAG AA (4.5:1). */
+  --paper:      #FBF9F5;
+  --surface:    #F3EFE8;
+  --surface-2:  #EAE3D8;
+  --line:       #DCD4C6;
+  --line-soft:  #E8E1D5;
+
+  --ink:        #1B1917;  /* 16.1:1 on paper */
+  --ink-2:      #57514A;  /*  7.6:1 on paper */
+  --ink-3:      #756E65;  /*  5.2:1 on paper */
+
+  --accent:     #8A4426;  /*  6.8:1 on paper */
+  --accent-2:   #6E351D;
+  --accent-soft:#F1E4DA;
+
+  --danger:     #A3231B;  /*  6.3:1 on paper */
+  --ok:         #2F5D3A;
+
+  --focus:      var(--accent);
+
+  /* Typography */
+  --font-display: "Iowan Old Style", "Hoefler Text", "Palatino Linotype",
+                  Palatino, Georgia, "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+               "Liberation Mono", monospace;
+
+  /* Modular scale, fluid where it earns it */
+  --t-xs:   0.75rem;
+  --t-sm:   0.875rem;
+  --t-base: 1.0625rem;
+  --t-lg:   1.1875rem;
+  --t-xl:   clamp(1.35rem, 1.22rem + 0.55vw, 1.6rem);
+  --t-2xl:  clamp(1.7rem,  1.42rem + 1.15vw, 2.25rem);
+  --t-3xl:  clamp(2.05rem, 1.6rem  + 1.95vw, 2.95rem);
+  --t-4xl:  clamp(2.5rem,  1.75rem + 3.2vw,  4.1rem);
+
+  --leading-tight: 1.12;
+  --leading-snug:  1.3;
+  --leading-body:  1.65;
+
+  --tracking-wide:  0.08em;
+  --tracking-wider: 0.15em;
+
+  /* Spacing rhythm, 4px base */
+  --s1: 0.25rem;  --s2: 0.5rem;   --s3: 0.75rem;  --s4: 1rem;
+  --s5: 1.5rem;   --s6: 2rem;     --s7: 3rem;     --s8: 4rem;
+  --s9: 6rem;     --s10: 8rem;
+
+  /* Structure */
+  --gutter: clamp(1.15rem, 4vw, 3rem);
+  --maxw: 1200px;
+  --measure: 68ch;
+
+  --r-sm: 3px;  --r: 7px;  --r-lg: 14px;  --r-xl: 22px;  --r-full: 999px;
+
+  /* Elevation — layered, low-contrast, warm-tinted */
+  --sh-1: 0 1px 2px rgba(27,25,23,.05), 0 1px 1px rgba(27,25,23,.04);
+  --sh-2: 0 4px 14px -3px rgba(27,25,23,.09), 0 2px 5px -2px rgba(27,25,23,.06);
+  --sh-3: 0 20px 44px -14px rgba(27,25,23,.20), 0 7px 16px -8px rgba(27,25,23,.11);
+
+  /* Motion */
+  --dur-1: 140ms;
+  --dur-2: 240ms;
+  --dur-3: 420ms;
+  --ease: cubic-bezier(.2,.7,.3,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. RESET
+   -------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* Anchor jumps must clear the sticky masthead. The desktop masthead is two
+     tiers, so this is measured against the taller of the two. */
+  scroll-padding-top: 6rem;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  /* `clip` rather than `hidden`: it prevents sideways overflow without
+     creating a scroll container, so position:sticky keeps working. */
+  overflow-x: clip;
+  font-family: var(--font-sans);
+  font-size: var(--t-base);
+  line-height: var(--leading-body);
+  color: var(--ink);
+  background: var(--paper);
+  overflow-wrap: break-word;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; height: auto; display: block; border: 0; }
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl, figure, blockquote { margin: 0; }
+
+ul, ol { padding-left: 1.25em; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin-block: var(--s7);
+}
+
+::selection { background: var(--accent-soft); color: var(--ink); }
+
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--t-4xl); max-width: 20ch; }
+h2 { font-size: var(--t-2xl); max-width: 26ch; }
+h3 { font-size: var(--t-xl);  line-height: var(--leading-snug); }
+h4 { font-size: var(--t-lg);  line-height: var(--leading-snug); }
+
+h5, h6 {
+  font-family: var(--font-sans);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+p { text-wrap: pretty; }
+
+strong { font-weight: 650; color: var(--ink); }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: color var(--dur-1) var(--ease);
+}
+a:hover { color: var(--accent-2); text-decoration: underline; }
+a:visited { color: var(--accent); }
+
+/* Links inside running prose stay underlined — in body copy the underline is
+   the affordance, and colour alone would fail WCAG 1.4.1. */
+main p a, main li a, .site-footer address a, figcaption a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+main p a:hover, main li a:hover { text-decoration-color: currentColor; }
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+blockquote {
+  margin: var(--s6) 0;
+  padding: var(--s2) 0 var(--s2) var(--s5);
+  border-left: 2px solid var(--accent);
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  color: var(--ink-2);
+}
+
+code, kbd, pre { font-family: var(--font-mono); font-size: 0.9em; }
+
+figure { margin-block: var(--s6); }
+figcaption {
+  margin-top: var(--s3);
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--s4);
+  top: -100px;
+  z-index: 200;
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--s3) var(--s5);
+  border-radius: 0 0 var(--r) var(--r);
+  font-weight: 600;
+  transition: top var(--dur-2) var(--ease);
+}
+.skip-link:focus { top: 0; color: var(--paper); }
+
+
+/* --------------------------------------------------------------------------
+   4. LAYOUT CONTAINERS
+   -------------------------------------------------------------------------- */
+
+.page {
+  width: min(calc(100% - 2 * var(--gutter)), var(--maxw));
+  margin-inline: auto;
+}
+
+main.page { padding-block: var(--s7) var(--s9); }
+
+/* Vertical rhythm for the flow of a document page. Anything that is a direct
+   child of main gets breathing room; the measure keeps prose readable even
+   though the container is 1200px wide. */
+:is(main, article) > * + * { margin-top: var(--s5); }
+:is(main, article) > h2 { margin-top: var(--s8); }
+:is(main, article) > h3 { margin-top: var(--s6); }
+:is(main, article) > hr { margin-block: var(--s8); }
+
+:is(main, article) > p,
+:is(main, article) > ul,
+:is(main, article) > ol,
+:is(main, article) > blockquote,
+:is(main, article) > .form-status { max-width: var(--measure); }
+
+:is(main, article) > ul, :is(main, article) > ol { padding-left: 1.15em; }
+:is(main, article) > ul li, :is(main, article) > ol li { margin-bottom: var(--s2); }
+:is(main, article) > ul li::marker { color: var(--accent); }
+
+/* Breadcrumb */
+:is(main, article) > nav[aria-label="Breadcrumb"] { margin-top: 0; }
+:is(main, article) > nav[aria-label="Breadcrumb"] p {
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+  letter-spacing: 0.01em;
+}
+:is(main, article) > nav[aria-label="Breadcrumb"] a { color: var(--ink-2); }
+:is(main, article) > nav[aria-label="Breadcrumb"] a:hover { color: var(--accent); }
+
+article { display: contents; }
+
+
+/* --------------------------------------------------------------------------
+   5. HEADER, NAVIGATION, MOBILE DRAWER
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  /* Above the drawer scrim (88), so the drawer -- which is a descendant of
+     this header -- and the toggle stay on top of the dimmed page. */
+  z-index: 90;
+  background: var(--paper);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-2) var(--ease),
+              box-shadow var(--dur-2) var(--ease);
+}
+
+/* NOTE: no backdrop-filter below the desktop breakpoint.
+   A backdrop-filter (like filter or transform) makes the element a containing
+   block for position:fixed descendants. The mobile drawer is a fixed child of
+   this header, so with the filter applied it was being positioned and clipped
+   against the ~80px header box instead of the viewport -- it rendered as a
+   small panel tucked under the masthead. The frosted effect is only switched
+   on at widths where the nav is an inline row and nothing is fixed inside. */
+@media (min-width: 64em) {
+  .site-header {
+    background: color-mix(in srgb, var(--paper) 85%, transparent);
+    backdrop-filter: saturate(1.4) blur(12px);
+    -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  }
+}
+/* JS adds .is-stuck once the page has scrolled, so the header only grows a
+   border and shadow when there is content beneath it to separate from. */
+.site-header.is-stuck {
+  border-bottom-color: var(--line);
+  box-shadow: var(--sh-1);
+}
+
+/* Three declared areas at every size. The "nav" row must exist even on
+   phones: without JavaScript the drawer never activates and the nav stays in
+   normal flow, and an item whose grid-area names a non-existent area falls
+   back to implicit placement, which put it in an unpredictable row. */
+.masthead {
+  width: min(calc(100% - 2 * var(--gutter)), var(--maxw));
+  margin-inline: auto;
+  padding-block: var(--s4);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "brand toggle"
+    "strap strap"
+    "nav   nav";
+  align-items: center;
+  column-gap: var(--s4);
+}
+
+.wordmark {
+  grid-area: brand;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.wordmark a { color: var(--ink); }
+.wordmark a:hover { color: var(--accent); text-decoration: none; }
+
+.strapline {
+  grid-area: strap;
+  margin-top: var(--s1);
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+/* The drawer is a later sibling, so it would paint over the button and leave
+   no visible way to close it. Lifting the toggle above the drawer keeps it on
+   screen the whole time; JS relabels it Menu / Close. */
+#nav-toggle {
+  grid-area: toggle;
+  position: relative;
+  z-index: 95;
+}
+
+#site-nav { grid-area: nav; }
+
+#site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+
+#site-nav a {
+  display: block;
+  padding: var(--s3) 0;
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+#site-nav a:hover { color: var(--accent); text-decoration: none; }
+#site-nav a[aria-current] { color: var(--ink); font-weight: 650; }
+
+/* -- Mobile drawer. Only when JavaScript is running, so a no-JS visitor keeps
+   a plain, complete, static list of links instead of a hidden panel. -- */
+html.js #site-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(86vw, 340px);
+  z-index: 90;
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  box-shadow: var(--sh-3);
+  padding: var(--s8) var(--s6) var(--s6);
+  padding-top: max(var(--s8), calc(var(--s6) + env(safe-area-inset-top)));
+  padding-bottom: max(var(--s6), env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform var(--dur-2) var(--ease),
+              visibility var(--dur-2) linear;
+}
+html.js #site-nav[data-collapsed="false"] {
+  transform: none;
+  visibility: visible;
+}
+html.js #site-nav a { font-size: var(--t-base); padding: var(--s3) 0; }
+
+/* Scrim behind the open drawer. */
+html.nav-open body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  /* Below the header (90) which contains the drawer, above the cookie card
+     (85) and the back-to-top button (70) so the whole page dims evenly. */
+  z-index: 88;
+  background: rgba(27,25,23,.42);
+  animation: fade-in var(--dur-2) var(--ease) both;
+}
+html.nav-open { overflow: hidden; }
+
+@media (min-width: 64em) {
+  /* Two tiers. Thirteen primary links do not fit on one line beside the
+     wordmark at laptop widths — they either overflow the container or wrap
+     into a ragged block against the brand. Giving the nav its own full-width
+     row under a hairline gives every item room, keeps the wordmark legible,
+     and reads as a proper retail masthead. */
+  .masthead {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand strap"
+      "nav   nav";
+    align-items: baseline;
+    column-gap: var(--s6);
+    padding-block: var(--s5) 0;
+  }
+
+  .strapline {
+    justify-self: end;
+    text-align: right;
+    margin-top: 0;
+  }
+
+  #nav-toggle { display: none; }
+
+  /* Reset every drawer property; on desktop the nav is an inline row again. */
+  html.js #site-nav,
+  #site-nav {
+    position: static;
+    width: auto;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    overflow: visible;
+    transform: none;
+    visibility: visible;
+    justify-self: stretch;
+    align-self: auto;
+    border: 0;
+    border-top: 1px solid var(--line-soft);
+    margin-top: var(--s4);
+  }
+
+  #site-nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* Tighter at the low end of the range so all thirteen items stay on one
+       line at 1024px; roomier once there is width to spend. */
+    gap: var(--s1) var(--s4);
+    padding-block: var(--s3);
+  }
+
+  #site-nav a {
+    position: relative;
+    padding: var(--s2) 0;
+    font-size: var(--t-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    white-space: nowrap;
+  }
+  /* Underline draws in from the left on hover and stays for the active item. */
+  #site-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-2) var(--ease);
+  }
+  #site-nav a:hover::after,
+  #site-nav a[aria-current]::after { transform: scaleX(1); }
+  #site-nav a[aria-current]::after { background: var(--accent); }
+}
+
+/* Once there is width to spend, let the row breathe. */
+@media (min-width: 80em) {
+  #site-nav ul { gap: var(--s1) var(--s6); }
+}
+
+/* The two-tier masthead is taller than the single-row phone one, so anchor
+   targets need more clearance on desktop. */
+@media (min-width: 64em) {
+  html { scroll-padding-top: 9.5rem; }
+}
+
+
+/* --------------------------------------------------------------------------
+   6. HERO AND PAGE INTRO
+   -------------------------------------------------------------------------- */
+
+:is(main, article) > h1 { margin-top: var(--s4); }
+
+/* The lead image on every page. Cropped to a consistent editorial ratio and
+   given real elevation, rather than sitting raw at its native size. */
+:is(main, article) > img {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-2);
+  margin-top: var(--s6);
+  background: var(--surface-2);
+}
+
+/* First paragraph after the h1 or hero reads as a standfirst. */
+:is(main, article) > h1 + p,
+:is(main, article) > img + p {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  line-height: var(--leading-snug);
+  color: var(--ink-2);
+  max-width: 46ch;
+}
+
+@media (min-width: 48em) {
+  :is(main, article) > img { aspect-ratio: 21 / 8; }
+}
+
+
+/* --------------------------------------------------------------------------
+   7. BUTTONS
+   -------------------------------------------------------------------------- */
+
+button,
+input[type="submit"] {
+  font-family: var(--font-sans);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  min-height: 44px;
+  padding: var(--s3) var(--s5);
+  border-radius: var(--r-full);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--dur-1) var(--ease),
+              border-color var(--dur-1) var(--ease),
+              color var(--dur-1) var(--ease),
+              transform var(--dur-1) var(--ease),
+              box-shadow var(--dur-1) var(--ease);
+}
+button:hover,
+input[type="submit"]:hover {
+  border-color: var(--ink-3);
+  box-shadow: var(--sh-1);
+}
+button:active, input[type="submit"]:active { transform: translateY(1px); }
+
+/* Primary action: the one thing on the block you are meant to press. */
+button[type="submit"],
+input[type="submit"],
+#cookie-accept {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+button[type="submit"]:hover,
+input[type="submit"]:hover,
+#cookie-accept:hover {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: #fff;
+  box-shadow: var(--sh-2);
+}
+
+/* The hamburger. A real control, not an icon font. */
+#nav-toggle {
+  min-width: 44px;
+  padding: var(--s2) var(--s4);
+  background: transparent;
+  border-color: var(--line);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. PRODUCTS
+   -------------------------------------------------------------------------- */
+
+.product {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.product h3 { letter-spacing: -0.01em; }
+.product h3 a { color: var(--ink); }
+.product h3 a:hover { color: var(--accent); text-decoration: none; }
+
+/* Price / category line — mono, uppercase, accent. Reads as a spec label. */
+.product-meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: var(--s2);
+}
+
+/* Bulleted spec list, kept as a list but given real typographic treatment:
+   an em dash marker, a tighter measure, and secondary ink. */
+.product-specs ul {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--s4);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.product-specs ul li {
+  position: relative;
+  padding-left: 1.15em;
+  margin-bottom: var(--s3);
+}
+.product-specs ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.product-specs ul strong { color: var(--ink); font-weight: 650; }
+.product-specs > p { margin-top: var(--s3); color: var(--ink-2); }
+
+/* -- Grid of cards: Shop All and the category pages -- */
+#product-list {
+  list-style: none;
+  margin: var(--s6) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+
+#product-list .product {
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--dur-2) var(--ease),
+              box-shadow var(--dur-2) var(--ease),
+              border-color var(--dur-2) var(--ease);
+}
+#product-list .product:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-3);
+  border-color: var(--surface-2);
+}
+#product-list .product-media { overflow: hidden; background: var(--surface-2); }
+#product-list .product-media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform var(--dur-3) var(--ease-out);
+}
+#product-list .product:hover .product-media img { transform: scale(1.045); }
+#product-list .product-specs { padding: var(--s5); }
+
+/* -- Editorial two-column rows: product detail pages and the home page -- */
+:is(main, article) > .product {
+  display: grid;
+  gap: var(--s6);
+  padding: var(--s5);
+  align-items: start;
+  margin-top: var(--s6);
+}
+:is(main, article) > .product .product-media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--r);
+}
+
+@media (min-width: 48em) {
+  :is(main, article) > .product {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--s7);
+    padding: var(--s6);
+  }
+  /* Alternate which side the photograph sits on, so a stack of these reads
+     as a rhythm rather than a list. */
+  :is(main, article) > .product:nth-of-type(even) .product-media { order: 2; }
+  :is(main, article) > .product:nth-of-type(even) {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   9. GALLERY
+   -------------------------------------------------------------------------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 165px), 1fr));
+  gap: var(--s3);
+  margin-top: var(--s5);
+}
+.gallery img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--r);
+  background: var(--surface-2);
+  transition: transform var(--dur-2) var(--ease),
+              box-shadow var(--dur-2) var(--ease);
+}
+.gallery img:hover { transform: scale(1.02); box-shadow: var(--sh-2); }
+
+
+/* --------------------------------------------------------------------------
+   10. FILTERS
+   -------------------------------------------------------------------------- */
+
+.filters {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s5);
+  margin-top: var(--s6);
+}
+.filters h2 {
+  font-size: var(--t-xs);
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--ink-3);
+  margin-bottom: var(--s4);
+}
+.filters ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s4); }
+.filters li { margin: 0; }
+.filters fieldset { margin-top: var(--s5); }
+
+@media (min-width: 48em) {
+  .filters ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .filters fieldset ul { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); }
+}
+
+.filter-count {
+  margin-top: var(--s5);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+
+/* --------------------------------------------------------------------------
+   11. TABLES
+   -------------------------------------------------------------------------- */
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  margin-top: var(--s5);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+}
+
+caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  font-weight: 600;
+  color: var(--ink);
+  padding: var(--s5) var(--s5) var(--s3);
+}
+
+thead th {
+  background: var(--surface-2);
+  font-family: var(--font-sans);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--ink-2);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+th, td {
+  border-bottom: 1px solid var(--line-soft);
+  padding: var(--s3) var(--s4);
+  text-align: left;
+  vertical-align: top;
+}
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface) 55%, transparent); }
+tbody th[scope="row"] { font-weight: 650; color: var(--ink); white-space: nowrap; }
+
+
+/* --------------------------------------------------------------------------
+   12. FORMS
+   -------------------------------------------------------------------------- */
+
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s5);
+  margin: 0 0 var(--s5);
+}
+legend {
+  font-family: var(--font-sans);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--ink-3);
+  font-weight: 650;
+  padding-inline: var(--s2);
+}
+
+label {
+  display: block;
+  margin: var(--s4) 0 var(--s2);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="search"], input[type="url"], input[type="number"],
+textarea, select {
+  font-family: inherit;
+  /* 16px minimum stops iOS Safari zooming the page on focus. */
+  font-size: max(16px, var(--t-base));
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: var(--s3) var(--s4);
+  width: 100%;
+  max-width: 34rem;
+  min-height: 46px;
+  transition: border-color var(--dur-1) var(--ease),
+              box-shadow var(--dur-1) var(--ease);
+}
+select { max-width: 22rem; }
+textarea { min-height: 9rem; resize: vertical; line-height: var(--leading-body); }
+
+input:hover, textarea:hover, select:hover { border-color: var(--ink-3); }
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* Native checkboxes and radios, tinted to the brand but not rebuilt. The
+   44px target comes from padding the label, which is part of the control. */
+input[type="checkbox"], input[type="radio"] {
+  accent-color: var(--accent);
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: var(--s3);
+  touch-action: manipulation;
+}
+label.inline {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s1);
+  padding: var(--s2) 0;
+  min-height: 32px;
+  font-weight: 500;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+label.inline input { margin-top: 0.25em; flex: none; }
+
+.hint {
+  display: block;
+  margin-top: var(--s2);
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+}
+
+/* Inline validation. The word "Error" leads the message, so the meaning never
+   depends on the colour alone. */
+.field-error {
+  display: block;
+  margin-top: var(--s2);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--danger);
+}
+.field-error:not(:empty)::before { content: "\26A0\FE0E "; }
+
+[aria-invalid="true"] {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 15%, transparent);
+}
+
+.form-status:not(:empty) {
+  margin-top: var(--s5);
+  padding: var(--s4) var(--s5);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r);
+  background: var(--surface);
+  font-size: var(--t-sm);
+}
+
+
+/* --------------------------------------------------------------------------
+   13. ACCORDION
+   -------------------------------------------------------------------------- */
+
+details.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface);
+  margin-bottom: var(--s3);
+  overflow: hidden;
+  transition: border-color var(--dur-1) var(--ease),
+              box-shadow var(--dur-1) var(--ease);
+}
+details.faq-item:hover { border-color: var(--ink-3); }
+details.faq-item[open] { box-shadow: var(--sh-1); }
+
+details.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s4);
+  padding: var(--s4) var(--s5);
+  font-weight: 650;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  min-height: 44px;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 1.3em;
+  line-height: 1;
+  color: var(--accent);
+  transition: transform var(--dur-2) var(--ease);
+}
+details.faq-item[open] summary::after { content: "\2212"; }
+
+details.faq-item > *:not(summary) {
+  padding: 0 var(--s5);
+  color: var(--ink-2);
+  font-size: var(--t-sm);
+}
+details.faq-item > *:not(summary):last-child { padding-bottom: var(--s5); }
+
+
+/* --------------------------------------------------------------------------
+   14. ADVERTISEMENT SLOTS
+   Labelled, visually distinct from editorial content, never above the fold's
+   primary content, never adjacent to navigation or a button.
+   -------------------------------------------------------------------------- */
+
+.ad-slot {
+  border: 1px dashed var(--line);
+  border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  padding: var(--s5);
+  margin-block: var(--s8);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ad-slot .ad-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--ink-3);
+  margin-bottom: var(--s2);
+}
+.ad-slot .ad-body { font-size: var(--t-sm); color: var(--ink-3); max-width: 60ch; }
+
+
+/* --------------------------------------------------------------------------
+   15. COOKIE BANNER
+   A card docked to the bottom of the viewport. Never an interstitial, never
+   covering the page on load — JS reserves its height at the foot of the
+   document so nothing is obscured.
+   -------------------------------------------------------------------------- */
+
+#cookie-banner {
+  position: fixed;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: var(--gutter);
+  bottom: max(var(--gutter), env(safe-area-inset-bottom));
+  z-index: 85;
+  max-width: 44rem;
+  margin-inline: auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-3);
+  padding: var(--s5);
+  max-height: 70vh;
+  max-height: 70dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  animation: rise-in var(--dur-3) var(--ease-out) both;
+}
+#cookie-banner[hidden] { display: none; }
+#cookie-banner p { font-size: var(--t-sm); color: var(--ink-2); }
+#cookie-banner p + p { margin-top: var(--s4); }
+#cookie-banner p:has(button) { display: flex; flex-wrap: wrap; gap: var(--s3); }
+#cookie-banner button { flex: 1 1 auto; }
+
+#cookie-prefs {
+  margin-top: var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line);
+}
+#cookie-prefs ul { list-style: none; margin: 0; padding: 0; }
+
+@media (min-width: 40em) {
+  #cookie-banner button { flex: 0 0 auto; }
+}
+
+
+/* --------------------------------------------------------------------------
+   16. BACK TO TOP
+   -------------------------------------------------------------------------- */
+
+#back-to-top {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  bottom: max(var(--gutter), env(safe-area-inset-bottom));
+  z-index: 70;
+  min-width: 44px;
+  padding: var(--s3) var(--s5);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--sh-2);
+  animation: fade-in var(--dur-2) var(--ease) both;
+}
+#back-to-top:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+#back-to-top[hidden] { display: none; }
+
+
+/* --------------------------------------------------------------------------
+   17. FOOTER
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: var(--s9);
+  padding-block: var(--s8) var(--s6);
+  padding-bottom: max(var(--s6), env(safe-area-inset-bottom));
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.footer-grid {
+  display: grid;
+  gap: var(--s7) var(--s6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+}
+
+.footer-brand h2 {
+  font-size: var(--t-lg);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-family: var(--font-display);
+}
+.site-footer address {
+  font-style: normal;
+  margin-top: var(--s4);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+.site-footer h3 {
+  font-family: var(--font-sans);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--ink-3);
+  font-weight: 650;
+  margin-bottom: var(--s4);
+}
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { margin-bottom: var(--s2); }
+.site-footer li a { font-size: var(--t-sm); color: var(--ink-2); }
+.site-footer li a:hover { color: var(--accent); }
+
+.footer-news { min-width: 0; }
+.footer-news .small { font-size: var(--t-xs); color: var(--ink-3); line-height: 1.6; }
+.footer-news input[type="email"] { max-width: 100%; }
+.footer-news button { width: 100%; }
+
+.site-footer .form-status:empty { display: none; }
+
+.site-footer > .footer-inner > hr { margin-block: var(--s7) var(--s5); }
+.site-footer .small { font-size: var(--t-xs); color: var(--ink-3); }
+
+@media (min-width: 64em) {
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.7fr;
+  }
+  .footer-news button { width: auto; }
+}
+
+
+/* --------------------------------------------------------------------------
+   18. UTILITIES
+   -------------------------------------------------------------------------- */
+
+.small { font-size: var(--t-sm); color: var(--ink-3); }
+
+.note {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r);
+  background: var(--surface);
+  padding: var(--s5);
+  margin-block: var(--s6);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  max-width: var(--measure);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#no-results {
+  padding: var(--s6);
+  border: 1px dashed var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  text-align: center;
+  color: var(--ink-2);
+  margin-top: var(--s6);
+}
+
+
+/* --------------------------------------------------------------------------
+   19. MOTION AND REVEAL
+   Purposeful only: state changes, and a single quiet entrance for sections
+   as they come into view. All of it is switched off under prefers-reduced-
+   motion in section 21.
+   -------------------------------------------------------------------------- */
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* JS marks sections with [data-reveal]; only when JS is present, so content is
+   never left invisible if the script fails to run. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--dur-3) var(--ease-out),
+              transform var(--dur-3) var(--ease-out);
+}
+html.js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+
+/* --------------------------------------------------------------------------
+   20. DARK MODE
+   -------------------------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:      #141310;
+    --surface:    #1D1B17;
+    --surface-2:  #272420;
+    --line:       #3A362F;
+    --line-soft:  #2E2B25;
+
+    --ink:        #F5F2EB;
+    --ink-2:      #C6BFB2;
+    --ink-3:      #9A9285;
+
+    --accent:     #E0906A;
+    --accent-2:   #EFA681;
+    --accent-soft:#3A2A20;
+
+    --danger:     #F08C82;
+
+    --sh-1: 0 1px 2px rgba(0,0,0,.5);
+    --sh-2: 0 4px 14px -3px rgba(0,0,0,.55), 0 2px 5px -2px rgba(0,0,0,.4);
+    --sh-3: 0 20px 44px -14px rgba(0,0,0,.7), 0 7px 16px -8px rgba(0,0,0,.5);
+  }
+
+  /* On dark, the accent is a light tint, so button text must go dark. */
+  button[type="submit"], input[type="submit"], #cookie-accept {
+    color: #241408;
+  }
+  button[type="submit"]:hover, input[type="submit"]:hover, #cookie-accept:hover {
+    color: #241408;
+  }
+  #back-to-top { background: var(--surface-2); border-color: var(--line); color: var(--ink); }
+  #back-to-top:hover { color: #241408; }
+  html.nav-open body::after { background: rgba(0,0,0,.6); }
+}
+
+
+/* --------------------------------------------------------------------------
+   21. REDUCED MOTION, FORCED COLOURS, PRINT
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Reveal must not leave anything shifted or invisible. */
+  html.js [data-reveal] { opacity: 1; transform: none; }
+  #product-list .product:hover { transform: none; }
+  #product-list .product:hover .product-media img { transform: none; }
+  .gallery img:hover { transform: none; }
+}
+
+@media (forced-colors: active) {
+  .ad-slot, .note, .filters, #cookie-banner, #back-to-top,
+  .table-scroll, th, td, fieldset, .product, details.faq-item {
+    border-color: CanvasText;
+  }
+  #site-nav a[aria-current] { forced-color-adjust: none; }
+}
+
+@media print {
+  .site-header, #cookie-banner, #back-to-top, .ad-slot, #nav-toggle { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  main.page { padding: 0; }
+  a { color: #000; text-decoration: underline; }
+  main p a::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+  .product, .table-scroll, details.faq-item { break-inside: avoid; }
+}

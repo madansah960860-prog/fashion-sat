@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!--
+  LEGAL NOTE: This accessibility statement is a starting template. It should be
+  reviewed by a qualified attorney, and the conformance claims verified by an
+  independent audit, before this site goes live. AODA reporting obligations in
+  Ontario should be checked against current regulations.
+-->
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Accessibility Statement | Plaintext Supply Co.</title>
+<meta name="description" content="How this site is built for accessibility: WCAG 2.1 AA conformance, semantic landmarks, keyboard operation, screen reader support, contrast, reduced motion, what we have tested, known limitations and how to report a problem.">
+<link rel="canonical" href="https://www.plaintextsupply.ca/accessibility.html">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plaintext Supply Co.">
+<meta property="og:locale" content="en_CA">
+<meta property="og:title" content="Accessibility Statement | Plaintext Supply Co.">
+<meta property="og:description" content="WCAG 2.1 AA conformance, what we have tested, known limitations, and how to report a problem.">
+<meta property="og:url" content="https://www.plaintextsupply.ca/accessibility.html">
+<meta property="og:image" content="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&w=1200&q=70">
+<meta property="og:image:alt" content="A plain garment photographed against a neutral background.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.plaintextsupply.ca/accessibility.html",
+  "url": "https://www.plaintextsupply.ca/accessibility.html",
+  "name": "Accessibility Statement",
+  "inLanguage": "en-CA",
+  "datePublished": "2026-01-15",
+  "dateModified": "2026-09-03",
+  "description": "Accessibility statement covering WCAG 2.1 AA conformance, testing, known limitations and how to report a problem.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.plaintextsupply.ca/index.html" },
+      { "@type": "ListItem", "position": 2, "name": "Accessibility Statement", "item": "https://www.plaintextsupply.ca/accessibility.html" }
+    ]
+  }
+}
+</script>
+</head>
+<body data-page="accessibility">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+<div class="masthead">
+  <p class="wordmark"><a href="index.html">PLAINTEXT SUPPLY CO.</a></p>
+  <p class="strapline">Plain clothes, plainly described. Shipped from Toronto since 2019.</p>
+  <button type="button" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+  <nav id="site-nav" aria-label="Main navigation" data-collapsed="false">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop All</a></li>
+      <li><a href="outerwear.html">Outerwear</a></li>
+      <li><a href="knitwear.html">Knitwear</a></li>
+      <li><a href="accessories.html">Accessories</a></li>
+      <li><a href="new-arrivals.html">New Arrivals</a></li>
+      <li><a href="lookbook.html">Lookbook</a></li>
+      <li><a href="size-guide.html">Size Guide</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="sustainability.html">Materials</a></li>
+      <li><a href="stockists.html">Stockists</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+</header>
+
+<main id="main" class="page">
+
+  <nav aria-label="Breadcrumb">
+    <p><a href="index.html">Home</a> &gt; Accessibility Statement</p>
+  </nav>
+
+  <h1>Accessibility Statement</h1>
+
+  <p><strong>Last updated 3 September 2026. First published 15 January 2026.</strong></p>
+
+  <div class="note">
+    <p><strong>Note.</strong> This statement is a starting template. The
+    conformance claim below should be verified by an independent audit, and the
+    statement reviewed by a lawyer, before this site is used commercially.</p>
+  </div>
+
+  <h2>Our commitment</h2>
+  <p>This website should be usable by everybody, including people using a screen
+  reader, a keyboard only, a switch device, voice control, screen magnification,
+  or a browser with text scaled up. Accessibility is the main reason this site
+  looks the way it does, rather than an adjustment made to it afterwards.</p>
+
+  <h2>Conformance</h2>
+  <p>We aim to meet <strong>Web Content Accessibility Guidelines (WCAG) 2.1 at
+  Level AA</strong>. We believe the site currently conforms, with the exceptions
+  honestly listed under "Known limitations" below. This is a self-assessment. It
+  has not been independently audited and we will say so plainly until it has
+  been.</p>
+  <p>As an Ontario business we are also subject to the Accessibility for
+  Ontarians with Disabilities Act and its Information and Communications
+  Standards, which reference WCAG 2.0 Level AA. We are working to the newer 2.1
+  guidelines because they cover mobile and low vision better.</p>
+
+  <h2>What we have done</h2>
+
+  <h3>Structure</h3>
+  <ul>
+    <li>Every page uses proper HTML landmarks: a banner header, a navigation
+      region with a label, a main region, and a contentinfo footer.</li>
+    <li>Headings run in order without skipping levels. One h1 per page,
+      describing what the page is.</li>
+    <li>A "Skip to content" link is the first thing in the tab order on every
+      page.</li>
+    <li>Breadcrumbs on every page below the top level.</li>
+    <li>Lists are marked up as lists and tables as tables, with a caption and
+      scoped header cells on every table.</li>
+    <li>Every page declares its language as English (Canada).</li>
+  </ul>
+
+  <h3>Keyboard</h3>
+  <ul>
+    <li>Everything on this site can be operated with a keyboard alone. There are
+      no mouse-only controls, because there are no custom controls at all.</li>
+    <li>Focus is always visible: a 2px accent outline with a 3px offset, never
+      removed and never set to none.</li>
+    <li>The mobile menu is a modal surface, so focus is kept inside it while it
+      is open and returned to the button that opened it on close.</li>
+    <li>Focus order follows reading order, because the layout is a single
+      column and the DOM order is the visual order.</li>
+    <li>There are no keyboard traps. Pressing Escape closes the mobile menu and
+      returns focus to the button that opened it.</li>
+    <li>Tables that scroll horizontally are focusable and can be scrolled with
+      the arrow keys.</li>
+  </ul>
+
+  <h3>Screen readers</h3>
+  <ul>
+    <li>Every image has alt text describing what is in the photograph, not the
+      file name and not a keyword list. Purely decorative images would carry an
+      empty alt attribute; there are none, because we do not use decorative
+      images.</li>
+    <li>Form fields have real labels, associated by "for" and "id". Placeholder
+      text is never used as a label.</li>
+    <li>Validation errors are written in text beneath the affected field,
+      announced through a live region, and start with the word "Error" so that
+      colour is never the only indicator.</li>
+    <li>Product filtering announces the new result count through a polite live
+      region, so a screen reader user is told what changed.</li>
+    <li>Link text makes sense out of context. There is no "click here" and no
+      "read more" on its own.</li>
+  </ul>
+
+  <h3>Vision and contrast</h3>
+  <ul>
+    <li>Body text is a near-black warm ink on warm paper, a contrast ratio of
+      about 16:1 against a required minimum of 4.5:1.</li>
+    <li>Secondary text is about 7.6:1 and the lightest metadata about 5.2:1.
+      The rust accent used for links, prices and primary buttons is about 6.8:1,
+      and the error red about 6.3:1. Every one of them exceeds AA.</li>
+    <li>Links inside body copy are underlined, and the active navigation item is
+      marked with weight as well as colour. Colour is never the only signal.</li>
+    <li>Text is real text, never an image of text.</li>
+    <li>The layout reflows to a single column at 320 pixels wide without
+      horizontal scrolling, and survives text being enlarged to 200 per cent.</li>
+    <li>Typefaces are system stacks rather than downloaded webfonts, so they
+      respect your operating system's font substitution settings, including any
+      dyslexia-friendly font you have configured at the OS level, and no text is
+      ever invisible while a font loads.</li>
+    <li>The site follows your system light or dark preference. Both themes are
+      contrast-checked to the same standard; neither is an afterthought.</li>
+  </ul>
+
+  <h3>Motion</h3>
+  <ul>
+    <li>Motion is limited to reporting a state: a card lifting under the
+      cursor, the mobile menu sliding in, a block settling as you scroll to it.
+      Nothing loops, nothing moves on its own, and nothing moves while you are
+      trying to read it.</li>
+    <li>There is no parallax, no carousel, no auto-playing anything, and no
+      animation longer than about four tenths of a second.</li>
+    <li><strong>If your device asks for reduced motion, all of it stops.</strong>
+      Transitions and animations are reduced to zero, the scroll-reveal is
+      skipped entirely rather than merely shortened, and hover transforms are
+      removed. Content is never left hidden or displaced as a result.</li>
+    <li>The scroll-reveal is applied by JavaScript only. If the script does not
+      run, or your browser lacks the relevant API, nothing is hidden in the
+      first place.</li>
+    <li>The back-to-top button jumps rather than glides when reduced motion is
+      requested.</li>
+    <li>There is no audio or video on this site, so there is nothing to caption
+      and nothing that plays without being asked.</li>
+  </ul>
+
+  <h3>Touch and mobile</h3>
+  <ul>
+    <li>Interactive targets are at least 44 by 44 CSS pixels, which is both the
+      WCAG 2.5.5 recommendation and the iOS Human Interface Guidelines
+      minimum.</li>
+    <li>Form inputs are set at 16px so that iPhone Safari does not zoom the page
+      when a field is focused.</li>
+    <li>The layout respects the notch and home indicator on modern iPhones
+      through safe-area insets, so nothing sits under the system UI.</li>
+    <li>The site works in both portrait and landscape and does not lock
+      orientation.</li>
+    <li>Nothing requires a gesture more complex than a single tap.</li>
+  </ul>
+
+  <h2>What we have tested with</h2>
+  <div class="table-scroll">
+    <table>
+      <caption>Testing carried out, as of 3 September 2026</caption>
+      <thead>
+        <tr><th scope="col">Tool or assistive technology</th><th scope="col">Platform</th><th scope="col">Result</th></tr>
+      </thead>
+      <!-- PLACEHOLDER — REPLACE WITH REAL VERIFIED INFORMATION BEFORE LAUNCH -->
+      <tbody>
+        <tr><td>VoiceOver</td><td>Safari, iPhone, iOS 18</td><td>Passed on all pages</td></tr>
+        <tr><td>VoiceOver</td><td>Safari, macOS</td><td>Passed on all pages</td></tr>
+        <tr><td>NVDA</td><td>Firefox, Windows 11</td><td>Passed on all pages</td></tr>
+        <tr><td>Keyboard only, no pointer</td><td>Chrome, Windows 11</td><td>Passed on all pages</td></tr>
+        <tr><td>200 per cent text zoom</td><td>Firefox and Safari</td><td>No loss of content or function</td></tr>
+        <tr><td>320px viewport</td><td>Safari, iPhone SE</td><td>No horizontal scrolling</td></tr>
+        <tr><td>Windows High Contrast Mode</td><td>Edge, Windows 11</td><td>Borders and focus remain visible</td></tr>
+        <tr><td>Automated checks</td><td>axe and the browser accessibility inspectors</td><td>No violations reported</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Known limitations</h2>
+  <p>Every accessibility statement that claims perfection is wrong. Here is what
+  we know is imperfect.</p>
+  <ul>
+    <li><strong>Product photographs are supplied by third-party photographers.</strong>
+      We write the alt text ourselves, but we are describing somebody else's
+      photograph. If a description is inaccurate, tell us and we will fix it the
+      same day.</li>
+    <li><strong>Long size tables are dense.</strong> The size guide tables carry
+      a lot of numbers and are hard work in a screen reader even with proper
+      headers. If you would like the measurements for a specific garment sent to
+      you as plain text or read out on the phone, email or ring us and we will
+      do it.</li>
+    <li><strong>No independent audit yet.</strong> Everything above is our own
+      testing. We intend to commission an audit and will publish the result here
+      when we have.</li>
+    <li><strong>No French translation.</strong> The site is English only at
+      present, which is a barrier for some Canadian customers. Telephone and
+      email support is available in French. A French version of the site is
+      planned but not yet dated, and we will not pretend otherwise.</li>
+    <li><strong>Advertisement slots.</strong> Advertisements served by third
+      parties are outside our control and may not meet the same standard as the
+      rest of the page. They are clearly labelled, they never sit above the main
+      content, and they never appear on the legal pages or the error page.</li>
+  </ul>
+
+  <h2>Alternatives, if the website does not work for you</h2>
+  <ul>
+    <li><strong>Order by telephone.</strong> Ring
+      <!-- PLACEHOLDER — REPLACE WITH REAL VERIFIED INFORMATION BEFORE LAUNCH -->
+      <a href="tel:+14165550148">+1 (416) 555-0148</a> on a weekday and somebody
+      will take the order, describe the garments, and read you the
+      measurements.</li>
+    <li><strong>Order by email.</strong> Write to
+      <a href="mailto:hello@plaintextsupply.ca">hello@plaintextsupply.ca</a> and
+      we will send a payment link.</li>
+    <li><strong>Order by post.</strong> Write to the address below and we will
+      ring you back to take payment.</li>
+    <li><strong>Come in.</strong> The studio at 214 Sterling Road is open Tuesday
+      to Saturday. Access details are on the
+      <a href="contact.html">contact page</a>.</li>
+  </ul>
+  <p>None of these cost more than ordering online, and free shipping applies the
+  same way.</p>
+
+  <h2>Reporting a problem</h2>
+  <p>If any part of this site does not work for you, tell us. We treat
+  accessibility faults as urgent, ahead of feature work.</p>
+  <!-- PLACEHOLDER — REPLACE WITH REAL VERIFIED INFORMATION BEFORE LAUNCH -->
+  <address>
+    Email: <a href="mailto:access@plaintextsupply.ca">access@plaintextsupply.ca</a><br>
+    Telephone: <a href="tel:+14165550148">+1 (416) 555-0148</a><br>
+    Post: Accessibility, Plaintext Supply Co., 214 Sterling Road, Unit 6,
+    Toronto, Ontario M6R 2B2, Canada
+  </address>
+  <p>Tell us the page, what you were trying to do, and what happened. It helps
+  if you can say what browser and assistive technology you are using, but do not
+  worry if you cannot. We acknowledge within two business days and aim to fix
+  within ten, and if a fix will take longer than that we will tell you why and
+  offer a way around it in the meantime.</p>
+  <p>If you are not satisfied with our response, you may contact the
+  Accessibility Directorate of Ontario, or the Canadian Human Rights Commission
+  where federal jurisdiction applies.</p>
+
+  <hr>
+
+  <h2>Related</h2>
+  <ul>
+    <li><a href="contact.html">Contact us, including studio access details</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+    <li><a href="cookie-policy.html">Cookie Policy</a></li>
+    <li><a href="disclaimer.html">Disclaimer and Affiliate Disclosure</a></li>
+  </ul>
+
+</main>
+
+<footer class="site-footer">
+<div class="page footer-inner">
+<div class="footer-grid">
+<div class="footer-brand">
+
+  <h2>Plaintext Supply Co.</h2>
+  <!-- PLACEHOLDER — REPLACE WITH REAL VERIFIED INFORMATION BEFORE LAUNCH -->
+  <address>
+    Plaintext Supply Co.<br>
+    214 Sterling Road, Unit 6<br>
+    Toronto, Ontario M6R 2B2<br>
+    Canada<br>
+    Telephone: <a href="tel:+14165550148">+1 (416) 555-0148</a><br>
+    Email: <a href="mailto:hello@plaintextsupply.ca">hello@plaintextsupply.ca</a><br>
+    Studio open to visitors Tuesday to Saturday, 11:00 to 18:00 Eastern.
+  </address>
+</div>
+
+<div class="footer-col">
+  <h3>Shop</h3>
+  <ul>
+    <li><a href="shop.html">Shop All</a></li>
+    <li><a href="outerwear.html">Outerwear</a></li>
+    <li><a href="knitwear.html">Knitwear</a></li>
+    <li><a href="accessories.html">Accessories</a></li>
+    <li><a href="new-arrivals.html">New Arrivals</a></li>
+    <li><a href="lookbook.html">Lookbook</a></li>
+    <li><a href="size-guide.html">Size Guide</a></li>
+  </ul>
+</div>
+
+<div class="footer-col">
+  <h3>Information</h3>
+  <ul>
+    <li><a href="our-story.html">Our Story</a></li>
+    <li><a href="sustainability.html">Sustainability and Materials</a></li>
+    <li><a href="journal.html">Journal</a></li>
+    <li><a href="stockists.html">Stockists and Wholesale</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="shipping.html">Shipping and Delivery</a></li>
+    <li><a href="returns.html">Returns and Exchanges</a></li>
+  </ul>
+</div>
+
+<div class="footer-col">
+  <h3>Legal</h3>
+  <ul>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+    <li><a href="cookie-policy.html">Cookie Policy</a></li>
+    <li><a href="accessibility.html">Accessibility Statement</a></li>
+    <li><a href="disclaimer.html">Disclaimer and Affiliate Disclosure</a></li>
+    <li><a href="privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a></li>
+    <li><a href="privacy.html#cookies" data-cookie-reopen>Change your cookie choices</a></li>
+  </ul>
+</div>
+
+<div class="footer-col footer-news">
+  <h3>Newsletter</h3>
+  <form id="footer-newsletter" data-validate novalidate
+        data-success="Thank you. Your address has been passed to our mailing list handler. You will receive one confirmation email and nothing else until you confirm.">
+    <p class="small">One email a month. Restocks, new runs, and the occasional
+    journal entry. Sent by Plaintext Supply Co., 214 Sterling Road, Unit 6,
+    Toronto, Ontario M6R 2B2, Canada. Every email identifies us as the sender,
+    carries that postal address, and has a working one-click unsubscribe link.
+    We ask you to confirm by email first, because Canada's anti-spam
+    legislation requires express consent and we would rather have it in
+    writing. You can withdraw consent at any time.</p>
+    <label for="nl-email-acs">Email address</label>
+    <input type="email" id="nl-email-acs" name="email" required
+           data-label="Email address" autocomplete="email" inputmode="email"
+           aria-describedby="nl-email-acs-error">
+    <span class="field-error" id="nl-email-acs-error" role="alert"></span>
+    <label class="inline" for="nl-consent-acs">
+      <input type="checkbox" id="nl-consent-acs" name="consent" required data-label="The consent box"
+             aria-describedby="nl-consent-acs-error">
+      I agree to receive the monthly email and I have read the
+      <a href="privacy.html">privacy policy</a>.
+    </label>
+    <span class="field-error" id="nl-consent-acs-error" role="alert"></span>
+    <p><button type="submit">Subscribe</button></p>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+</div>
+
+  <hr>
+
+  <p class="small">Plaintext Supply Co. is a registered business in Ontario,
+  Canada. All prices are shown in United States dollars.
+  <!-- PLACEHOLDER — REPLACE WITH REAL VERIFIED INFORMATION BEFORE LAUNCH -->
+  Copyright <span class="current-year">2026</span> Plaintext Supply Co. All rights reserved.
+  Questions: <a href="contact.html">contact us</a> or email
+  <a href="mailto:hello@plaintextsupply.ca">hello@plaintextsupply.ca</a>.</p>
+
+</div>
+</footer>
+
+<div id="cookie-banner" role="region" aria-label="Cookie consent" hidden>
+  <p><strong>Cookies.</strong> We use strictly necessary cookies to keep your
+  basket and your language working. We would also like to set optional cookies
+  for anonymous traffic measurement and for advertising. We set nothing optional
+  until you choose. Read the <a href="cookie-policy.html">cookie policy</a>.</p>
+  <p>
+    <button type="button" id="cookie-accept">Accept all</button>
+    <button type="button" id="cookie-reject">Reject optional</button>
+    <button type="button" id="cookie-manage" aria-expanded="false" aria-controls="cookie-prefs">Manage preferences</button>
+  </p>
+  <div id="cookie-prefs" hidden>
+    <ul>
+      <li><label class="inline"><input type="checkbox" checked disabled> Strictly necessary (always on)</label></li>
+      <li><label class="inline" for="cookie-analytics"><input type="checkbox" id="cookie-analytics"> Analytics</label></li>
+      <li><label class="inline" for="cookie-advertising"><input type="checkbox" id="cookie-advertising"> Advertising</label></li>
+    </ul>
+    <p><button type="button" id="cookie-save">Save preferences</button></p>
+  </div>
+</div>
+
+<button type="button" id="back-to-top" hidden>Back to top</button>
+
+</body>
+</html>
